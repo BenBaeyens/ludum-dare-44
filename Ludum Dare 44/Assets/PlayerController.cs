@@ -15,20 +15,24 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
     }
 
-    void FixedUpdate() {
+    void Update() {
 
-        Move();
-        RotatePlayerToMouse();
+        
 
         if (Input.GetMouseButtonDown(0))
             Shoot();
-
     }
-    
+
+    void FixedUpdate() {
+        Move();
+        RotatePlayerToMouse();
+    }
+
 
 
     public void Shoot() {
-        Instantiate(projectile, transform.position, transform.rotation, projectileParent.transform);
+        Debug.Log("shot");
+        Instantiate(projectile, gameObject.transform.GetChild(0).transform.position, transform.rotation, projectileParent.transform);
 
        
     }
