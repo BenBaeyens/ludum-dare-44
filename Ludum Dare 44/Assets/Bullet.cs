@@ -20,6 +20,15 @@ public class Bullet : MonoBehaviour {
     }
 
 
+    private void OnTriggerEnter(Collider other) {
+        if (other.name.Contains("Enemy"))
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
+      
+    }
+
     void MoveBullet() {
         transform.position = player.transform.position;
         transform.rotation = player.transform.rotation;
