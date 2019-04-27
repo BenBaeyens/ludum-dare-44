@@ -12,17 +12,33 @@ public class Bullet : MonoBehaviour {
 
     public float moveSpeed = 12f;
 
+    GameObject healParent;
+
+    GameObject heal;
 
     private void Start() {
 
         player = GameObject.Find("Player");
         MoveBullet();
+        healParent = GameObject.Find("Heals");
+
     }
 
 
     private void OnTriggerEnter(Collider other) {
         if (other.name.Contains("Enemy"))
         {
+            GameObject[] tempObj = Resources.FindObjectsOfTypeAll<GameObject>();
+            for (int i = 0; i < tempObj.Length; i++)
+            {
+                if(tempObj[i].name == "Heal")
+                {
+                    Debug.Log("found");
+                    heal = tempObj[i];
+                    break;
+                }
+            }
+            Instantiate(heal, other.gameObject.transform.position, other.gameObject.transform.rotation, healParent.transform);
             Destroy(other.gameObject);
             Destroy(gameObject);
         }

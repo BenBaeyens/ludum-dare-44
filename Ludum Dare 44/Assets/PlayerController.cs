@@ -6,6 +6,12 @@ public class PlayerController : MonoBehaviour {
 
     Rigidbody rb;
     public float speed;
+    public float speedMultiplier = 1.05f;
+
+    public float scaleModifier = 1.1f;
+
+    public float minSize = 0.28f;
+    public float maxSize = 0.8f;
 
     public GameObject projectile;
     public GameObject projectileParent;
@@ -31,8 +37,13 @@ public class PlayerController : MonoBehaviour {
 
 
     public void Shoot() {
-        Debug.Log("shot");
-        Instantiate(projectile, gameObject.transform.GetChild(0).transform.position, transform.rotation, projectileParent.transform);
+        if (transform.localScale.x > minSize)
+        { 
+        gameObject.transform.localScale /= scaleModifier;
+        speed *= speedMultiplier;
+        GameObject projectileobject = Instantiate(projectile, gameObject.transform.GetChild(0).transform.position, transform.rotation, projectileParent.transform);
+        projectileobject.transform.localScale = new Vector3(transform.localScale.x * projectileobject.transform.localScale.x, transform.localScale.y * projectileobject.transform.localScale.y, transform.localScale.z * projectileobject.transform.localScale.z) ;
+        }
 
        
     }
@@ -54,6 +65,14 @@ public class PlayerController : MonoBehaviour {
 
     float AngleBetweenTwoPoints(Vector3 a, Vector3 b) {
         return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
+    }
+
+    public void Heal() {
+        if(gameObject.transform.localScale.x < maxSize)
+        {
+            speed /= scaleModifier;
+            transform.localScale *= scaleModifier;
+        }
     }
 
 }
