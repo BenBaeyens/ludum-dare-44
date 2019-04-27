@@ -10,22 +10,26 @@ public class Bullet : MonoBehaviour {
 
     public GameObject player;
 
-    public float moveSpeed;
+    public float moveSpeed = 12f;
 
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            MoveBullet();
-        }
+    private void Start() {
+
+        player = GameObject.Find("Player");
+        MoveBullet();
     }
+
 
     void MoveBullet() {
         transform.position = player.transform.position;
         transform.rotation = player.transform.rotation;
         PlayerDir = player.transform.forward;
         GetComponent<Rigidbody>().velocity = PlayerDir * moveSpeed;
+        StartCoroutine(DestroyBullet());
+    }
+
+    IEnumerator DestroyBullet() {
+        yield return new WaitForSeconds(2.5f);
+        Destroy(gameObject);
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
@@ -6,6 +7,10 @@ public class PlayerController : MonoBehaviour {
     Rigidbody rb;
     public float speed;
 
+    public GameObject projectile;
+    public GameObject projectileParent;
+
+  
     private void Start() {
         rb = GetComponent<Rigidbody>();
     }
@@ -14,6 +19,18 @@ public class PlayerController : MonoBehaviour {
 
         Move();
         RotatePlayerToMouse();
+
+        if (Input.GetMouseButtonDown(0))
+            Shoot();
+
+    }
+    
+
+
+    public void Shoot() {
+        Instantiate(projectile, transform.position, transform.rotation, projectileParent.transform);
+
+       
     }
 
     public void Move() {
