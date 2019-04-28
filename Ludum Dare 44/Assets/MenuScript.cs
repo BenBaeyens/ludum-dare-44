@@ -6,10 +6,16 @@ using TMPro;
 
 public class MenuScript : MonoBehaviour {
 
+    public AudioClip hoversound;
+    public AudioClip clicksound;
+
+    AudioSource audioSource;
+
     public TextMeshProUGUI highscore;
 
     private void Start() {
         highscore.text = "Highscore: " + PlayerPrefs.GetInt("highscore").ToString();
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
 
@@ -19,6 +25,13 @@ public class MenuScript : MonoBehaviour {
 
     public void Quit() {
         Application.Quit();
+    }
+
+    public void hoverSound() {
+        audioSource.PlayOneShot(hoversound);
+    }
+    public void clickSound() {
+        audioSource.PlayOneShot(clicksound);
     }
 
 
