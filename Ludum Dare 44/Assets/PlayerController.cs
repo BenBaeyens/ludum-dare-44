@@ -7,10 +7,12 @@ public class PlayerController : MonoBehaviour {
 
     Rigidbody rb;
     public float speed;
-    public float healspeedMultiplier = 1.05f;
-    public float shootspeedMultiplier = 1.05f;
+    public float maxSpeed = 4.5f;
 
-    public float healscaleModifier = 1.15f;
+    public float healspeedMultiplier = 1.05f;
+    public float shootspeedMultiplier = 1.03f;
+
+    public float healscaleModifier = 1.1f;
     public float shootscaleModifier = 1.1f;
 
     public float minSize = 0.28f;
@@ -52,6 +54,9 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0))
             Shoot();
+
+        if (speed > maxSpeed)
+            speed = maxSpeed;
     }
 
     void FixedUpdate() {
@@ -101,7 +106,7 @@ public class PlayerController : MonoBehaviour {
     public void Heal() {
         if(gameObject.transform.localScale.x < maxSize)
         {
-            speed /= healspeedMultiplier;
+            speed /= shootspeedMultiplier;
             transform.localScale *= healscaleModifier;
             audioSource.PlayOneShot(healsound);
 
