@@ -329,6 +329,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &444723393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 444723395}
+  - component: {fileID: 444723394}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &444723394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444723393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101ca520471505d43937cf6bc65335fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 3613501368303837379, guid: 669b87b61e8ae894ab4f87405915382a, type: 3}
+  enemyParent: {fileID: 288268028}
+  time: 2
+--- !u!4 &444723395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444723393}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.86, y: 0.28, z: 0.28}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &460701639
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,8 +409,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2.96
-  speedMultiplier: 1.05
-  scaleModifier: 1.1
+  healspeedMultiplier: 1.15
+  shootspeedMultiplier: 1.05
+  healscaleModifier: 1.15
+  shootscaleModifier: 1.1
   minSize: 0.28
   maxSize: 0.8
   projectile: {fileID: 818464600302040169, guid: 1b375504ce8854e418a929345e8f1656,
@@ -374,6 +422,8 @@ MonoBehaviour:
   healsound: {fileID: 8300000, guid: 7a453570dcbc5c843a37270f1a92ed24, type: 3}
   shootsound: {fileID: 8300000, guid: 7b663d82531a75c438cf31b15f1079ba, type: 3}
   errorsound: {fileID: 8300000, guid: 031d9993e7bde7c44835d2b871b62f93, type: 3}
+  hurtsound: {fileID: 8300000, guid: 71ebcf8fd6628f7488e4f87bc223f847, type: 3}
+  deathsound: {fileID: 8300000, guid: 0fa01675122660f49af384ca6dff1277, type: 3}
 --- !u!65 &460701641
 BoxCollider:
   m_ObjectHideFlags: 0
