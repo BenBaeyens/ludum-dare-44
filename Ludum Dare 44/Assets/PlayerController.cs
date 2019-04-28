@@ -16,9 +16,17 @@ public class PlayerController : MonoBehaviour {
     public GameObject projectile;
     public GameObject projectileParent;
 
+    public AudioClip popsound;
+    public AudioClip healsound;
+    public AudioClip shootsound;
+    public AudioClip errorsound;
+
+    AudioSource ads;
+
   
     private void Start() {
         rb = GetComponent<Rigidbody>();
+        ads = Camera.main.GetComponent<AudioSource>();
     }
 
     void Update() {
@@ -38,11 +46,17 @@ public class PlayerController : MonoBehaviour {
 
     public void Shoot() {
         if (transform.localScale.x > minSize)
-        { 
+        {
+            ads.PlayOneShot(shootsound);
         gameObject.transform.localScale /= scaleModifier;
         speed *= speedMultiplier;
         GameObject projectileobject = Instantiate(projectile, gameObject.transform.GetChild(0).transform.position, transform.rotation, projectileParent.transform);
         projectileobject.transform.localScale = new Vector3(transform.localScale.x * projectileobject.transform.localScale.x, transform.localScale.y * projectileobject.transform.localScale.y, transform.localScale.z * projectileobject.transform.localScale.z) ;
+        } else
+        {
+            
+            ads.PlayOneShot(errorsound, 0.25f);
+          
         }
 
        
@@ -72,7 +86,13 @@ public class PlayerController : MonoBehaviour {
         {
             speed /= scaleModifier;
             transform.localScale *= scaleModifier;
+            ads.PlayOneShot(healsound);
+
         }
+    }
+
+    public void KillEnemy() {
+        ads.PlayOneShot(popsound);
     }
 
 }

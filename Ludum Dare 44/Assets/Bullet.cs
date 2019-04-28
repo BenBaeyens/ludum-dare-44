@@ -7,14 +7,13 @@ public class Bullet : MonoBehaviour {
 
     Vector3 PlayerDir;
 
-
     public GameObject player;
 
     public float moveSpeed = 12f;
 
     GameObject healParent;
 
-    GameObject heal;
+    public GameObject heal;
 
     private void Start() {
 
@@ -38,6 +37,7 @@ public class Bullet : MonoBehaviour {
                     break;
                 }
             }
+            player.GetComponent<PlayerController>().KillEnemy();
             Instantiate(heal, other.gameObject.transform.position, other.gameObject.transform.rotation, healParent.transform);
             Destroy(other.gameObject);
             Destroy(gameObject);
