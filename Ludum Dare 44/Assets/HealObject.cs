@@ -20,6 +20,8 @@ public class HealObject : MonoBehaviour
 
         if (distance <= radius)
             agent.destination = player.position;
+        else
+            agent.destination = transform.position;
     }
 
     private void OnTriggerEnter(Collider other) {

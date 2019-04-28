@@ -14,8 +14,11 @@ public class EnemySpawner : MonoBehaviour
         InvokeRepeating("spawnEnemy", time, time);   
     }
 
+
+
     void spawnEnemy() {
-        Instantiate(enemy, transform.position, transform.rotation, enemyParent.transform);
+        if (enemyParent.gameObject.transform.childCount < 14)
+           Instantiate(enemy, transform.position, transform.rotation, enemyParent.transform);
     }
 
   
