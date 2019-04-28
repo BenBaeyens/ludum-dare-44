@@ -110,9 +110,6 @@ public class PlayerController : MonoBehaviour {
             transform.localScale *= healscaleModifier;
             audioSource.PlayOneShot(healsound);
 
-        } else
-        {
-            audioSource.PlayOneShot(errorsound);
         }
     }
 
