@@ -88,6 +88,9 @@ public class PlayerController : MonoBehaviour {
             transform.localScale *= scaleModifier;
             ads.PlayOneShot(healsound);
 
+        } else
+        {
+            ads.PlayOneShot(errorsound);
         }
     }
 
