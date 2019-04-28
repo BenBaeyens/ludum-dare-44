@@ -6,9 +6,11 @@ public class PlayerController : MonoBehaviour {
 
     Rigidbody rb;
     public float speed;
-    public float speedMultiplier = 1.05f;
+    public float healspeedMultiplier = 1.15f;
+    public float shootspeedMultiplier = 1.05f;
 
-    public float scaleModifier = 1.1f;
+    public float healscaleModifier = 1.15f;
+    public float shootscaleModifier = 1.1f;
 
     public float minSize = 0.28f;
     public float maxSize = 0.8f;
@@ -20,6 +22,8 @@ public class PlayerController : MonoBehaviour {
     public AudioClip healsound;
     public AudioClip shootsound;
     public AudioClip errorsound;
+    public AudioClip hurtsound;
+    public AudioClip deathsound;
 
     AudioSource ads;
 
@@ -48,8 +52,8 @@ public class PlayerController : MonoBehaviour {
         if (transform.localScale.x > minSize)
         {
             ads.PlayOneShot(shootsound);
-        gameObject.transform.localScale /= scaleModifier;
-        speed *= speedMultiplier;
+        gameObject.transform.localScale /= shootscaleModifier;
+        speed *= shootspeedMultiplier;
         GameObject projectileobject = Instantiate(projectile, gameObject.transform.GetChild(0).transform.position, transform.rotation, projectileParent.transform);
         projectileobject.transform.localScale = new Vector3(transform.localScale.x * projectileobject.transform.localScale.x, transform.localScale.y * projectileobject.transform.localScale.y, transform.localScale.z * projectileobject.transform.localScale.z) ;
         } else
@@ -84,8 +88,8 @@ public class PlayerController : MonoBehaviour {
     public void Heal() {
         if(gameObject.transform.localScale.x < maxSize)
         {
-            speed /= scaleModifier;
-            transform.localScale *= scaleModifier;
+            speed /= healspeedMultiplier;
+            transform.localScale *= healscaleModifier;
             ads.PlayOneShot(healsound);
 
         } else
@@ -96,6 +100,22 @@ public class PlayerController : MonoBehaviour {
 
     public void KillEnemy() {
         ads.PlayOneShot(popsound);
+    }
+
+    public void Hurt() {
+        if (transform.localScale.x > minSize)
+        {
+            ads.PlayOneShot(hurtsound);
+            gameObject.transform.localScale /= healscaleModifier;
+            speed *= healspeedMultiplier;
+        } else
+        {
+            // Game Over
+            ads.PlayOneShot(deathsound);
+            Destroy(gameObject);
+            Time.timeScale = 0f;
+
+        }
     }
 
 }
