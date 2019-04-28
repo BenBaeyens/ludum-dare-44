@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour {
     public TextMeshProUGUI finalhighscore;
     public GameObject gameOver;
 
+    public GameObject healsParent;
+
   
     private void Start() {
         rb = GetComponent<Rigidbody>();
@@ -60,6 +62,11 @@ public class PlayerController : MonoBehaviour {
 
         if (speed > maxSpeed)
             speed = maxSpeed;
+
+        if(healsParent.transform.childCount > 6)
+        {
+            Destroy(healsParent.transform.GetChild(0));
+        }
     }
 
     void FixedUpdate() {
