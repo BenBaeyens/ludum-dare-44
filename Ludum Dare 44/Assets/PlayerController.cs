@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour {
 
         if(healsParent.transform.childCount > 6)
         {
-            Destroy(healsParent.transform.GetChild(0));
+            Destroy(healsParent.transform.GetChild(0).gameObject);
         }
     }
 
