@@ -34,5 +34,12 @@ public class MenuScript : MonoBehaviour {
         audioSource.PlayOneShot(clicksound);
     }
 
+    public void mainMenu() {
+        SceneManager.LoadScene(0);
+    }
+    public void PlayAgain() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
 
 }

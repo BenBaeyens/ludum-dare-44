@@ -34,6 +34,9 @@ public class PlayerController : MonoBehaviour {
     AudioSource audioSource;
 
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI finalScore;
+    public TextMeshProUGUI finalhighscore;
+    public GameObject gameOver;
 
   
     private void Start() {
@@ -129,7 +132,10 @@ public class PlayerController : MonoBehaviour {
             audioSource.PlayOneShot(deathsound, 0.25f);
             Destroy(gameObject);
             PlayerPrefs.SetInt("highscore", highscore);
-            Time.timeScale = 0f;
+            gameOver.SetActive(true);
+            finalScore.text = "YOUR SCORE: " + enemiesKilled.ToString();
+            finalhighscore.text = "HIGHSCORE: " + highscore.ToString();
+            Time.timeScale = 0.5f;
         }
     }
 
