@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour {
         } else
         {
             // Game Over
-            audioSource.PlayOneShot(deathsound);
+            audioSource.PlayOneShot(deathsound, 0.25f);
             Destroy(gameObject);
             PlayerPrefs.SetInt("highscore", highscore);
             Time.timeScale = 0f;
