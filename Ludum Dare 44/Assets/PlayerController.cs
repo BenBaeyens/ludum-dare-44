@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour {
         if (speed > maxSpeed)
             speed = maxSpeed;
 
-        if(healsParent.transform.childCount > 6)
+        if(healsParent.transform.childCount > 9)
         {
             Destroy(healsParent.transform.GetChild(0).gameObject);
         }
