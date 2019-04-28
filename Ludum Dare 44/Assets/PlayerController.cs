@@ -135,6 +135,7 @@ public class PlayerController : MonoBehaviour {
             gameOver.SetActive(true);
             finalScore.text = "YOUR SCORE: " + enemiesKilled.ToString();
             finalhighscore.text = "HIGHSCORE: " + highscore.ToString();
+            scoreText.gameObject.SetActive(false);
             Time.timeScale = 0.5f;
         }
     }

@@ -1,9 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class HealObject : MonoBehaviour
 {
+    NavMeshAgent agent;
+
+    public float radius;
+    Transform player;
+
+    private void Start() {
+        agent = GetComponent<NavMeshAgent>();
+        player = GameObject.Find("Player").transform;
+    }
+
+    private void Update() {
+        float distance = Vector3.Distance(player.position, transform.position);
+
+        if (distance <= radius)
+            agent.destination = player.position;
+    }
+
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.name == "Player")
         {
@@ -15,7 +33,6 @@ public class HealObject : MonoBehaviour
                 other.gameObject.GetComponent<PlayerController>().Heal();
                  Destroy(gameObject);
             }
-
         }
     }
 

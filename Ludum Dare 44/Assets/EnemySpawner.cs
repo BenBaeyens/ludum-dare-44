@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("spawnEnemy", 0, time);   
+        InvokeRepeating("spawnEnemy", time, time);   
     }
 
     void spawnEnemy() {
