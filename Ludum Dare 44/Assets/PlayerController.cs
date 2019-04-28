@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         audioSource = Camera.main.GetComponent<AudioSource>();
         highscore = PlayerPrefs.GetInt("highscore");
-
+        Time.timeScale = 1f;
     }
 
     void Update() {
