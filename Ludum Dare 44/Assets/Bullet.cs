@@ -38,6 +38,7 @@ public class Bullet : MonoBehaviour {
                 }
             }
             player.GetComponent<PlayerController>().KillEnemy();
+            player.GetComponent<PlayerController>().enemiesKilled++;
             Instantiate(heal, other.gameObject.transform.position, other.gameObject.transform.rotation, healParent.transform);
             Destroy(other.gameObject);
             Destroy(gameObject);

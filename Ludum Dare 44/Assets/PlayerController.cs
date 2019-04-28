@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour {
 
 
     Rigidbody rb;
     public float speed;
-    public float healspeedMultiplier = 1.15f;
+    public float healspeedMultiplier = 1.05f;
     public float shootspeedMultiplier = 1.05f;
 
     public float healscaleModifier = 1.15f;
@@ -25,17 +26,29 @@ public class PlayerController : MonoBehaviour {
     public AudioClip hurtsound;
     public AudioClip deathsound;
 
-    AudioSource ads;
+    public int enemiesKilled;
+    private int highscore;
+
+    AudioSource audioSource;
+
+    public TextMeshProUGUI scoreText;
 
   
     private void Start() {
         rb = GetComponent<Rigidbody>();
-        ads = Camera.main.GetComponent<AudioSource>();
+        audioSource = Camera.main.GetComponent<AudioSource>();
+        highscore = PlayerPrefs.GetInt("highscore");
+
     }
 
     void Update() {
 
-        
+        scoreText.text = enemiesKilled.ToString();
+
+        if(enemiesKilled >= highscore)
+        {
+            highscore = enemiesKilled;
+        }
 
         if (Input.GetMouseButtonDown(0))
             Shoot();
@@ -51,7 +64,7 @@ public class PlayerController : MonoBehaviour {
     public void Shoot() {
         if (transform.localScale.x > minSize)
         {
-            ads.PlayOneShot(shootsound);
+            audioSource.PlayOneShot(shootsound);
         gameObject.transform.localScale /= shootscaleModifier;
         speed *= shootspeedMultiplier;
         GameObject projectileobject = Instantiate(projectile, gameObject.transform.GetChild(0).transform.position, transform.rotation, projectileParent.transform);
@@ -59,7 +72,7 @@ public class PlayerController : MonoBehaviour {
         } else
         {
             
-            ads.PlayOneShot(errorsound, 0.25f);
+            audioSource.PlayOneShot(errorsound, 0.25f);
           
         }
 
@@ -90,31 +103,31 @@ public class PlayerController : MonoBehaviour {
         {
             speed /= healspeedMultiplier;
             transform.localScale *= healscaleModifier;
-            ads.PlayOneShot(healsound);
+            audioSource.PlayOneShot(healsound);
 
         } else
         {
-            ads.PlayOneShot(errorsound);
+            audioSource.PlayOneShot(errorsound);
         }
     }
 
     public void KillEnemy() {
-        ads.PlayOneShot(popsound);
+        audioSource.PlayOneShot(popsound);
     }
 
     public void Hurt() {
         if (transform.localScale.x > minSize)
         {
-            ads.PlayOneShot(hurtsound);
+            audioSource.PlayOneShot(hurtsound);
             gameObject.transform.localScale /= healscaleModifier;
             speed *= healspeedMultiplier;
         } else
         {
             // Game Over
-            ads.PlayOneShot(deathsound);
+            audioSource.PlayOneShot(deathsound);
             Destroy(gameObject);
+            PlayerPrefs.SetInt("highscore", highscore);
             Time.timeScale = 0f;
-
         }
     }
 
