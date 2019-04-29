@@ -11,3 +11,4 @@
 ## The Idea
 I went for the idea of having a character that could shoot as fast as it wanted to, but every time you shoot you lose a slight bit of health. When you kill an enemy, you get a bit of health back. This forces you to balance out playing as trigger happy or careful gunman!
 
+###### Developed by Kjip(Gamer), April 2019
