@@ -34,4 +34,6 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Ludum Dare 44/Assets/TextMesh Pro/*
+Ludum Dare 44/Versions/*
 Ludum Dare 44/Assets/TextMesh Pro.meta
